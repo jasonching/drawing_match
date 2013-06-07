@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFF66"
+    tools:context=".MainActivity" >
+
+    <jason.android.firstdemo.Panel
+        android:id="@+id/drawPanel1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:ems="1"
+        android:text="@string/drawing"
+        android:textSize="50sp" />
+
+     <ImageView
+         android:id="@+id/paintingMainThumb"
+         android:layout_width="108dp"
+         android:layout_height="108dp"
+         android:layout_alignParentRight="true"
+         android:layout_gravity="right" />
+     
+</RelativeLayout>
