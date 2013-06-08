@@ -22,5 +22,49 @@
          android:layout_height="108dp"
          android:layout_alignParentRight="true"
          android:layout_gravity="right" />
+
+     <TextView
+         android:id="@+id/matchedTextView1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentRight="true"
+         android:layout_marginBottom="20dp"
+         android:layout_marginRight="22dp"
+         android:text="Matched!"
+         android:textAppearance="?android:attr/textAppearanceLarge"
+         android:textColorLink="@android:color/holo_green_dark" />
+
+     <ImageView
+         android:id="@+id/imageView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentLeft="true"
+         android:adjustViewBounds="false"
+         android:maxHeight="50dp"
+         android:maxWidth="50dp"
+         android:onClick="clickPencil"
+         android:src="@drawable/paint_pencil" />
+
+     <ImageView
+         android:id="@+id/imageView1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_toRightOf="@+id/imageView2"
+         android:maxHeight="50dp"
+         android:maxWidth="50dp"
+         android:onClick="clickEraser"
+         android:src="@drawable/paint_eraser" />
+
+     <TextView
+         android:id="@+id/matchingFactorTextView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@+id/matchedTextView1"
+         android:layout_centerHorizontal="true"
+         android:text="Small Text"
+         android:textAppearance="?android:attr/textAppearanceSmall" />
      
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package jason.android.firstdemo;
 
 import jason.android.firstdemo.listener.NewPaintCreatedListener;
+import jason.android.helper.PaintCollection;
+import jason.android.helper.PaintPath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +22,11 @@ import android.view.SurfaceView;
 
 public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 
-	private Paint paint;
-	private List<Path> _graphics = new ArrayList<Path>();
+	private Paint currentPaint;
+	private List<PaintPath> _graphics = new ArrayList<PaintPath>();
 	private Path path;
 	private List<NewPaintCreatedListener> newPaintCreatedListeners = new ArrayList<NewPaintCreatedListener>();
+	private Bitmap currentPainting;
 	
 	public Panel(Context context) {
 		super(context);
@@ -40,45 +43,63 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 		init();
 	}
 
+	public Bitmap getCurrentPainting() {
+		return currentPainting;
+	}
+	
 	public void addNewPaintCreatedListener(NewPaintCreatedListener toAdd) {
 		newPaintCreatedListeners.add(toAdd);
+	}
+	
+	public void setCurrentPaint(Paint paint) {
+		currentPaint = paint;
 	}
 	
 	private void init() {
 		getHolder().addCallback(this);
 
-		paint = new Paint();
+		currentPaint = PaintCollection.Black5Stroke;
+		/*paint = new Paint();
 		paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeWidth(3);
+		paint.setStrokeWidth(3);*/
 
 		// ondraw won't be called if this is not set to false
 		this.setWillNotDraw(false);
 	}
 
-	private Bitmap currentPainting;
-	
-	public Bitmap getCurrentPainting() {
-		return currentPainting;
-	}
-	
 	@SuppressLint("DrawAllocation")
 	@Override
 	public void onDraw(Canvas canvas) {
 
+		drawCanvas(canvas);
+				
+		//if (_graphics.size() > 3) {
+		setCurrentPainting(canvas);
+		raiseNewPaintCreated();
+		//}
+	}
+	
+	private void setCurrentPainting(Canvas canvas) {
+		currentPainting = Bitmap.createBitmap(canvas.getWidth(), canvas.getHeight(), Config.RGB_565);
+		//currentPainting.setDensity(canvas.getDensity());
+		Canvas newCanvas = new Canvas(currentPainting);
+		drawCanvas(newCanvas);
+	}
+
+	private void raiseNewPaintCreated() {
+		for (NewPaintCreatedListener l : newPaintCreatedListeners) {
+			l.Created(this);
+		}
+	}
+
+	private void drawCanvas(Canvas canvas) {
 		// draw background
 		canvas.drawColor(Color.WHITE);
 
 		synchronized(_graphics) {
-			for(Path path : _graphics) {
-				canvas.drawPath(path, paint);
+			for(PaintPath path : _graphics) {
+				canvas.drawPath(path.getPath(), path.getPaint());
 			}
-		}
-		
-		currentPainting = Bitmap.createBitmap(canvas.getWidth(), canvas.getHeight(), Config.ARGB_8888);
-		canvas.setBitmap(currentPainting);
-		
-		for (NewPaintCreatedListener l : newPaintCreatedListeners) {
-			l.Created(this);
 		}
 	}
 
@@ -115,7 +136,7 @@ public class Panel extends SurfaceView implements SurfaceHolder.Callback {
 			path.lineTo(x, y);
 
 			synchronized(_graphics) {
-				_graphics.add(path);
+				_graphics.add(new PaintPath(path, currentPaint));
 			}
 		}
 		else if (event.getAction() == MotionEvent.ACTION_UP) {

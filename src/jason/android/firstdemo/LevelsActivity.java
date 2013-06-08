@@ -1,5 +1,7 @@
 package jason.android.firstdemo;
 
+import jason.android.helper.BitmapHelper;
+
 import java.io.ByteArrayOutputStream;
 
 import android.app.Activity;
@@ -35,14 +37,27 @@ public class LevelsActivity extends Activity {
     	
     	ImageView imgView = (ImageView)view;
     	
-    	Bitmap bitmap = (Bitmap)((BitmapDrawable)imgView.getDrawable()).getBitmap();
-    	ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] bitmapdata = stream.toByteArray();
+//    	Bitmap bitmap = (Bitmap)((BitmapDrawable)imgView.getDrawable()).getBitmap();
+//    	ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//    	bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//    	byte[] bitmapdata = stream.toByteArray();
     	
-    	Intent intent = new Intent(this, ImageActivity.class);
-    	intent.putExtra("drawable", bitmapdata);
-    	
-    	startActivity(intent);
+//    	Intent intent = new Intent(this, ImageActivity.class);
+//    	intent.putExtra("drawable", bitmapdata);
+//    	
+//    	startActivity(intent);
+//    	
+    	Intent intent = new Intent(this, PaintingMainActivity.class);
+		intent.putExtra("drawable", BitmapHelper.convertToByteArray((BitmapDrawable)imgView.getDrawable()));
+		
+		startActivity(intent);
     }
+    
+	public static byte[] convertToByteArray(BitmapDrawable drawable) {
+
+		Bitmap bitmap = (Bitmap) drawable.getBitmap();
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+		return stream.toByteArray();
+	}
 }

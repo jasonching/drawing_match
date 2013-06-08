@@ -21,33 +21,32 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int cartoon_bird=0x7f020000;
-        public static final int cartoon_dog=0x7f020001;
-        public static final int cloud=0x7f020002;
-        public static final int cubic_shape04=0x7f020003;
-        public static final int facebook_connect=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int paint_eraser=0x7f020006;
-        public static final int paint_pencil=0x7f020007;
-        public static final int penguin=0x7f020008;
-        public static final int square=0x7f020009;
-        public static final int square_handdraw=0x7f02000a;
-        public static final int square_handdraw2=0x7f02000b;
-        public static final int square_handdraw3=0x7f02000c;
+        public static final int facebook_connect=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int level_1_glove=0x7f020002;
+        public static final int level_1_glove_s=0x7f020003;
+        public static final int level_2_mittens=0x7f020004;
+        public static final int level_2_mittens_s=0x7f020005;
+        public static final int level_3_doraemon=0x7f020006;
+        public static final int paint_eraser=0x7f020007;
+        public static final int paint_pencil=0x7f020008;
+        public static final int penguin=0x7f020009;
+        public static final int square=0x7f02000a;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f080006;
-        public static final int action_settings=0x7f08000c;
+        public static final int action_settings=0x7f08000d;
         public static final int drawPanel1=0x7f08000a;
-        public static final int editText1=0x7f080001;
         public static final int editText2=0x7f080003;
         public static final int editText3=0x7f080005;
         public static final int imageView1=0x7f080000;
         public static final int imageView2=0x7f080004;
         public static final int imageView3=0x7f080002;
+        public static final int matchedText1=0x7f080001;
+        public static final int matchedTextView1=0x7f080007;
+        public static final int matchingFactorTextView=0x7f08000c;
         public static final int paintingMainThumb=0x7f08000b;
         public static final int playItButton=0x7f080009;
-        public static final int textView1=0x7f080007;
         public static final int textView2=0x7f080008;
     }
     public static final class layout {
