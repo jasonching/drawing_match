@@ -30,6 +30,10 @@ import static com.googlecode.javacv.cpp.opencv_highgui.*;
 
 public class BitmapHelper {
 
+	private static FeatureDetector detector = new FastFeatureDetector(1, true);
+	private static DescriptorExtractor d = new BriefDescriptorExtractor();
+	private static BFMatcher matcher = new BFMatcher();
+	
 	public static byte[] convertToByteArray(BitmapDrawable drawable) {
 
 		Bitmap bitmap = (Bitmap) drawable.getBitmap();
@@ -57,13 +61,12 @@ public class BitmapHelper {
 
 	public static float match(Bitmap bitmapA, Bitmap bitmapB) {
 
-/*		FeatureDetector detector = new FastFeatureDetector(1, true);
-		DescriptorExtractor d = new BriefDescriptorExtractor();
-		BFMatcher matcher = new BFMatcher();
+//		detector = new FastFeatureDetector(1, true);
+//		d = new BriefDescriptorExtractor();
+//		matcher = new BFMatcher();
 
 		IplImage imageA = convertToIplImage(bitmapA);
 		IplImage imageB = convertToIplImage(bitmapB);
-
 		// detector
 		KeyPoint vectorA = new KeyPoint();
 		KeyPoint vectorB = new KeyPoint();
@@ -77,37 +80,7 @@ public class BitmapHelper {
 
 		d.compute(imageA, vectorA, descriptA);
 		d.compute(imageB, vectorB, descriptB);
-
-		// matcher
-		DMatch matches = new DMatch();
-		matcher.match(descriptA, descriptB, matches, null);
-
-		for (int i = 0; i < matches.capacity(); i++) {
-			DMatch pointer = matches.position(i);
-			System.out.println(pointer.distance());
-		}
-		*/
 		
-		FeatureDetector detector = new FastFeatureDetector(1, true);
-		DescriptorExtractor d = new BriefDescriptorExtractor();
-		BFMatcher matcher = new BFMatcher();
-
-		IplImage imageA = convertToIplImage(bitmapA);
-		IplImage imageB = convertToIplImage(bitmapB);
-		// detector
-		KeyPoint vectorA = new KeyPoint();
-		KeyPoint vectorB = new KeyPoint();
-
-		detector.detect(imageA, vectorA, null);
-		detector.detect(imageB, vectorB, null);
-
-		// descriptor
-		CvMat descriptA = new CvMat(null);
-		CvMat descriptB = new CvMat(null);
-
-		d.compute(imageA, vectorA, descriptA);
-		d.compute(imageB, vectorB, descriptB);
-
 		// matcher
 		DMatch matches = new DMatch();
 		matcher.match(descriptA, descriptB, matches, null);
