@@ -31,7 +31,6 @@ public final class R {
         public static final int paint_eraser=0x7f020007;
         public static final int paint_pencil=0x7f020008;
         public static final int penguin=0x7f020009;
-        public static final int square=0x7f02000a;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f080006;
